@@ -71,7 +71,6 @@ If you're experiencing pixelated or blurry Pokemon images:
 
 - **Enhanced Image Quality:** Upgraded to `viuer` v0.11.0 with improved terminal protocol detection for sharper, non-pixelated images in Kitty, iTerm2, and other modern terminals.
 - **Better Block Rendering:** Optimized aspect ratio handling for cleaner Pokemon sprites in standard terminals.
-- **Fully Renamed:** Migrated all internals from `pokemon-icat` to `pokemon-inix`.
 - **NixOS Native:** Refactored Flake and Module to work seamlessly with NixOS.
 - **Improved Stability:** Fixed intermittent crashes when Pokémon icons were missing or failed to load.
 - **Graceful Error Handling:** Added robust parsing for Pokémon data to prevent runtime panics.
