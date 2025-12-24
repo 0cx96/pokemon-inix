@@ -46,20 +46,20 @@ let
         ];
 
         buildPhase = ''
-            export POKEMON_ICAT_DATA=$TMPDIR
+            export POKEMON_INIX_DATA=$TMPDIR
 
-            mkdir -p $POKEMON_ICAT_DATA/pokemon-icons/normal
-            mkdir -p $POKEMON_ICAT_DATA/pokemon-icons/shiny
+            mkdir -p $POKEMON_INIX_DATA/pokemon-icons/normal
+            mkdir -p $POKEMON_INIX_DATA/pokemon-icons/shiny
 
             python3 setup_icons.py
 
-            find $POKEMON_ICAT_DATA/pokemon-icons -type f -exec sha256sum {} + | sort | sha256sum
-            find $POKEMON_ICAT_DATA/pokemon-icons -type f | wc -l
+            find $POKEMON_INIX_DATA/pokemon-icons -type f -exec sha256sum {} + | sort | sha256sum
+            find $POKEMON_INIX_DATA/pokemon-icons -type f | wc -l
         '';
 
         installPhase = ''
             mkdir -p $out
-            cp -r $POKEMON_ICAT_DATA/pokemon-icons $out
+            cp -r $POKEMON_INIX_DATA/pokemon-icons $out
         '';
 
     };
@@ -111,7 +111,7 @@ let
             cp -r ${pokemon-icons}/pokemon-icons $out/share/pokemon-inix
 
             wrapProgram $out/bin/pokemon-inix \
-                --set POKEMON_ICAT_DATA $out/share/pokemon-inix \
+                --set POKEMON_INIX_DATA $out/share/pokemon-inix \
                 --prefix PATH : ${lib.makeBinPath [ pkgs.nvchecker pkgs.nix ]}
         '';
     };

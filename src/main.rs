@@ -162,7 +162,10 @@ fn main() {
         return;
     }
 
-    let mut root_path = PathBuf::from(env::var("POKEMON_ICAT_DATA").expect("$POKEMON_ICAT_DATA is not set"));
+    let root_path_str = env::var("POKEMON_INIX_DATA")
+        .or_else(|_| env::var("POKEMON_ICAT_DATA"))
+        .expect("Neither $POKEMON_INIX_DATA nor $POKEMON_ICAT_DATA is set");
+    let mut root_path = PathBuf::from(root_path_str);
 
     if let Some(gens) = &args.generations {
         if gens
@@ -243,13 +246,16 @@ fn main() {
             );
         }
 
+        let h = if let Some(h) = args.height {
+            h
+        } else {
+            (pokemon.height as f32 * args.scale).round() as u32
+        };
+
         let conf = Config {
             absolute_offset: false,
-            height: Some(if let Some(h) = args.height {
-                h
-            } else {
-                (pokemon.height as f32 * args.scale).round() as u32
-            }),
+            height: Some(h),
+            width: Some(h * 2), // Approximate aspect ratio for block rendering
             ..Default::default()
         };
 

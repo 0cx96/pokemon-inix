@@ -41,7 +41,7 @@ pkgs.mkShell {
   ];
 
   shellHook = ''
-    export POKEMON_ICAT_DATA="$(pwd)/bin"
+    export POKEMON_INIX_DATA="$(pwd)/bin"
     echo "Welcome to the pokemon-inix development shell!"
     echo "Rust version: $(rustc --version)"
     echo "Python version: $(python3 --version)"

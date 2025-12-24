@@ -48,12 +48,29 @@ chmod +x install.sh
 # Show a random Pokemon
 pokemon-inix
 
+# Show a Pokemon with better image quality (recommended for small terminals)
+pokemon-inix --scale 2
+
+# Show a specific Pokemon
+pokemon-inix --pokemon pikachu
+
 # Check for icon updates (requires 'nix' on NixOS or manual setup elsewhere)
 pokemon-inix -u
 ```
 
+### 🎨 Image Quality Tips
+
+If you're experiencing pixelated or blurry Pokemon images:
+
+- **Use `--scale 2` or higher** for better detail in block-based rendering
+- **Modern terminals** (Kitty, iTerm2, WezTerm) will automatically display high-resolution images
+- **Standard terminals** will use optimized block rendering with improved aspect ratios
+- The default scale is optimized for full-screen terminals; adjust as needed for your setup
+
 ## ✨ Key Improvements & Fixes
 
+- **Enhanced Image Quality:** Upgraded to `viuer` v0.11.0 with improved terminal protocol detection for sharper, non-pixelated images in Kitty, iTerm2, and other modern terminals.
+- **Better Block Rendering:** Optimized aspect ratio handling for cleaner Pokemon sprites in standard terminals.
 - **Fully Renamed:** Migrated all internals from `pokemon-icat` to `pokemon-inix`.
 - **NixOS Native:** Refactored Flake and Module to work seamlessly with NixOS.
 - **Improved Stability:** Fixed intermittent crashes when Pokémon icons were missing or failed to load.
