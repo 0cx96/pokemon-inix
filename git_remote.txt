@@ -1,0 +1,5 @@
+origin	git@github.com:0cx96/pokemon-inix.git (fetch)
+origin	git@github.com:0cx96/pokemon-inix.git (push)
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main

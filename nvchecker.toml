@@ -1,0 +1,5 @@
+[pokemon-icons]
+source = "github"
+github = "PokeAPI/sprites"
+use_latest_release = false
+branch = "master"

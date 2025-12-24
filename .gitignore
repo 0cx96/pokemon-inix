@@ -1,0 +1,25 @@
+# Rust
+target/
+**/*.rs.bk
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Nix
+result
+result-*
+.direnv/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Build logs
+*.log
+*.err
+*.out
+output.txt
