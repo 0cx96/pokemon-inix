@@ -1,6 +1,6 @@
 # pokemon-inix
 
-> **Note:** This is a refactored version of [pokemon-icat](https://github.com/aflaag/pokemon-inix). 
+> **Note:** This is a refactored version of [pokemon-icat](https://github.com/aflaag/pokemon-icat). 
 > It has been optimized for NixOS and includes several stability and UI improvements.
 
 ## ❄️ NixOS Installation (Recommended)
