@@ -4,7 +4,7 @@ sudo -v
 
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-sudo rm -f /usr/bin/pokemon-icat
-rm -rf "$HOME/.local/share/pokemon-icat"
+sudo rm -f /usr/local/bin/pokemon-inix
+rm -rf "$HOME/.local/share/pokemon-inix"
 
-echo "pokemon-icat was successfully uninstalled! :("
+echo "pokemon-inix was successfully uninstalled! :("

@@ -3,22 +3,28 @@
 > **Note:** This is a refactored version of [pokemon-icat](https://github.com/aflaag/pokemon-inix). 
 > It has been optimized for NixOS and includes several stability and UI improvements.
 
-## Key Improvements & Fixes
+## 🚀 Quick Start (Arch / Debian / generic Linux)
 
-- **NixOS Native:** Refactored Flake and Module to work seamlessly with NixOS.
-- **Improved Stability:** Fixed intermittent crashes when Pokémon icons were missing or failed to load.
-- **Graceful Error Handling:** Added robust parsing for Pokémon data (like typing and ID) to prevent runtime panics.
-- **Clean Terminal Exit:** Modified the TUI to exit cleanly inline, preventing terminal residues.
-- **Optimized Nix Build:** Optimized the build process to prevent unnecessary recompilations of binary assets.
-- **Automated Hash Management:** Implemented `update-icons.sh` to automatically track and update icon asset hashes, ensuring reproducible builds without manual intervention.
+For a simple installation on most distributions, use the unified installation script. It handles **automated system dependency detection** and installation for Arch and Debian.
 
-## Other Distributions
+### Install
+```bash
+git clone https://github.com/0cx96/pokemon-inix
+cd pokemon-inix
+chmod +x install.sh
+./install.sh
+```
 
-To install on other Linux distributions, please check the [original repository](https://github.com/aflaag/pokemon-icat).
+### 📂 Where do the files go?
+- **Binary:** `/usr/local/bin/pokemon-inix`
+- **Data/Icons:** `~/.local/share/pokemon-inix/` (XDG standard)
+- **Shell Config:** Automatically adds required vars to `.bashrc`, `.zshrc`, or `config.fish`.
 
-## NixOS Installation
+---
 
-This repository exports a standard Flake with a NixOS module.
+## ❄️ NixOS Installation (Recommended)
+
+This repository exports a standard Flake with a NixOS module. This is the cleanest way to install on NixOS.
 
 **flake.nix:**
 ```nix
@@ -34,28 +40,24 @@ modules = [
 programs.pokemon-inix.enable = true;
 ```
 
-## Usage
+---
 
-```bash | fish | zsh
+## 🛠️ Usage
+
+```bash
 # Show a random Pokemon
 pokemon-inix
 
-# Check for icon updates
+# Check for icon updates (requires 'nix' on NixOS or manual setup elsewhere)
 pokemon-inix -u
 ```
 
-## Automated Icon Updates
+## ✨ Key Improvements & Fixes
 
-To keep the Pokémon icons up to date while maintaining Nix reproducibility, you can use the built-in update flag:
-
-```bash | fish | zsh
-pokemon-inix -u
-```
-
-Alternatively, you can run the provided script directly:
-
-```bash
-./update-icons.sh
-```
-
-These methods require `nvchecker` and `nix` to be installed. They detect upstream changes and automatically update the hashes in `default.nix`.
+- **Fully Renamed:** Migrated all internals from `pokemon-icat` to `pokemon-inix`.
+- **NixOS Native:** Refactored Flake and Module to work seamlessly with NixOS.
+- **Auto-Installer:** Unified `install.sh` for non-Nix systems with automatic `apt`/`pacman` dependency resolution.
+- **Improved Stability:** Fixed intermittent crashes when Pokémon icons were missing or failed to load.
+- **Graceful Error Handling:** Added robust parsing for Pokémon data to prevent runtime panics.
+- **Clean Terminal Exit:** Modified the TUI to exit cleanly inline, preventing terminal residues.
+- **Automated Hash Management:** Implemented `update-icons.sh` to automatically track and update icon asset hashes.

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pokemon-icat"
+name = "pokemon-inix"
 version = "1.0.0"
 description = "Shows any Pokémon sprite in your terminal!"
 authors = ["Your Name <you@example.com>"]

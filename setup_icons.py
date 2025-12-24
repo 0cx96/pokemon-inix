@@ -33,13 +33,13 @@ URL_POINT_BASE = "https://raw.githubusercontent.com/PokeAPI/sprites/6127a3794416
 
 # dirs
 # CACHE_DIR = Path.home() / ".cache"
-# CACHE_DIR = Path("$POKEMON_ICAT_DATA")
-# POKEMON_ICAT_DIR = CACHE_DIR / "pokemon-icat"
-# POKEMON_ICAT_DIR = Path("$POKEMON_ICAT_DATA")
-POKEMON_ICAT_DIR = Path(os.environ["POKEMON_ICAT_DATA"])
-POKEMON_ICAT_DIR.mkdir(exist_ok=True, parents=True)
+# CACHE_DIR = Path("$POKEMON_INIX_DATA")
+# POKEMON_INIX_DIR = CACHE_DIR / "pokemon-inix"
+# POKEMON_INIX_DIR = Path("$POKEMON_INIX_DATA")
+POKEMON_INIX_DIR = Path(os.environ["POKEMON_INIX_DATA"])
+POKEMON_INIX_DIR.mkdir(exist_ok=True, parents=True)
 
-POKEMON_ICONS_DIR = POKEMON_ICAT_DIR / "pokemon-icons"
+POKEMON_ICONS_DIR = POKEMON_INIX_DIR / "pokemon-icons"
 POKEMON_ICONS_DIR.mkdir(exist_ok=True, parents=True)
 
 
