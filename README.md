@@ -1,6 +1,15 @@
 # pokemon-inix
 
-> **Note:** This is a fork of [pokemon-inix](https://github.com/aflaag/pokemon-inix). I used AI to refactor the Flake and Module to make it work out-of-the-box with NixOS.
+> **Note:** This is a refactored version of [pokemon-inix](https://github.com/aflaag/pokemon-inix). 
+> It has been optimized for NixOS and includes several stability and UI improvements.
+
+## Key Improvements & Fixes
+
+- **NixOS Native:** Refactored Flake and Module to work seamlessly with NixOS.
+- **Improved Stability:** Fixed intermittent crashes when Pokémon icons were missing or failed to load.
+- **Graceful Error Handling:** Added robust parsing for Pokémon data (like typing and ID) to prevent runtime panics.
+- **Clean Terminal Exit:** Modified the TUI to exit cleanly inline, preventing terminal residues.
+- **Optimized Nix Build:** Optimized the build process to prevent unnecessary recompilations of binary assets.
 
 ## Other Distributions
 
