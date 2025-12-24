@@ -5,7 +5,7 @@
 
 ## 🚀 Quick Start (Arch / Debian / generic Linux)
 
-For a simple installation on most distributions, use the unified installation script. It handles **automated system dependency detection** and installation for Arch and Debian.
+For a simple installation on most distributions, use the unified installation script. It handles **automated system dependency detection** and installation for Arch and Debian based distributions.
 
 ### Install
 ```bash
