@@ -16,6 +16,7 @@
       in {
         packages.default = packages.pokemon-inix;
         packages.pokemon-inix = packages.pokemon-inix;
+        packages.pokemon-icons = packages.pokemon-icons;
       }
     ) // {
       overlays.default = final: prev: {

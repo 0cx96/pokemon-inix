@@ -255,7 +255,7 @@ fn main() {
         let conf = Config {
             absolute_offset: false,
             height: Some(h),
-            width: Some(h * 2), // Approximate aspect ratio for block rendering
+            width: Some(h * 2),
             ..Default::default()
         };
 

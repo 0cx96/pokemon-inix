@@ -173,14 +173,12 @@ def build_new_image(png_idx_img: Image.Image) -> Image.Image:
     # Get the bounding box of non-transparent pixels
     bbox = rgba_img.getbbox()
 
-    # If there's no bounding box (i.e., image is fully transparent), raise an error
+    # If there's no bounding box (e.g., image is fully transparent), return original
     if bbox is None:
-        raise ValueError("Image is fully transparent")
+        return rgba_img
 
     # Crop the image to the bounding box
-    cropped_img = rgba_img.crop(bbox)
-
-    return cropped_img
+    return rgba_img.crop(bbox)
 
 
 async def gather_pokemons(tree: "TreeNode") -> None:
