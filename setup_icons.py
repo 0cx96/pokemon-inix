@@ -289,8 +289,8 @@ async def download_single_pokemon(
     except Exception as e:
         print(f"ERROR: Failed to save {destination}: {e}")
     
-    # os.utime(destination, (0, 0))
-    #
+    os.utime(destination, (0, 0))
+    
     # subprocess.run(["optipng", "-strip", "all", "-quiet", "-o7", str(destination)], check=True)
 
 def get_pokemon_id(p: GitObject) -> Optional[str]:
