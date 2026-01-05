@@ -28,7 +28,7 @@ let
 
         outputHashMode = "recursive";
         outputHashAlgo = "sha256";
-        outputHash = "sha256-ndDOLFzrd2Q2G4dub2LcPqsxk4Aq0TdJNxoxxANMDmI=";
+        outputHash = "sha256-5Hjcpw0GOIexxbz76GvX1dhFZhtbEYxJSmtjOUkZAtY=";
 
         src = lib.fileset.toSource {
             root = ./.;
@@ -47,6 +47,7 @@ let
 
         buildPhase = ''
             export POKEMON_INIX_DATA=$TMPDIR
+            export SOURCE_DATE_EPOCH=1
 
             mkdir -p $POKEMON_INIX_DATA/pokemon-icons/normal
             mkdir -p $POKEMON_INIX_DATA/pokemon-icons/shiny

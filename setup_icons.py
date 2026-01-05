@@ -27,15 +27,9 @@ class PokemonPath:
 # urls
 HEADERS = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
 TREE_ROOT_URL = "https://api.github.com/repos/PokeAPI/sprites/git/trees/6127a37944160e603c1a707ac0c5f8e367b4050a"
-
-URL_TREE = "https://api.github.com/repos/PokeAPI/sprites/git/trees/c87f4ced89853ad94e3a474306c07d329a28d59c"
 URL_POINT_BASE = "https://raw.githubusercontent.com/PokeAPI/sprites/6127a37944160e603c1a707ac0c5f8e367b4050a"
 
 # dirs
-# CACHE_DIR = Path.home() / ".cache"
-# CACHE_DIR = Path("$POKEMON_INIX_DATA")
-# POKEMON_INIX_DIR = CACHE_DIR / "pokemon-inix"
-# POKEMON_INIX_DIR = Path("$POKEMON_INIX_DATA")
 POKEMON_INIX_DIR = Path(os.environ["POKEMON_INIX_DATA"])
 POKEMON_INIX_DIR.mkdir(exist_ok=True, parents=True)
 
@@ -283,15 +277,20 @@ async def download_single_pokemon(
         (int(new_rgba_img.width * upscale_factor), int(new_rgba_img.height * upscale_factor)), Image.BOX
     )
 
-    # save the processed RGBA image
+    # save the processed RGBA image with deterministic settings
     try:
-        img.save(destination)
+        # Save with deterministic PNG settings
+        # - compress_level=6: consistent compression
+        # - optimize=False: disable optimization which can be non-deterministic
+        # Strip all metadata for reproducibility
+        img.save(destination, format='PNG', compress_level=6, optimize=False)
     except Exception as e:
         print(f"ERROR: Failed to save {destination}: {e}")
+        return
     
-    os.utime(destination, (0, 0))
-    
-    # subprocess.run(["optipng", "-strip", "all", "-quiet", "-o7", str(destination)], check=True)
+    # Set deterministic timestamp for reproducible builds
+    timestamp = int(os.environ.get("SOURCE_DATE_EPOCH", "0"))
+    os.utime(destination, (timestamp, timestamp))
 
 def get_pokemon_id(p: GitObject) -> Optional[str]:
     found = re.search(r"([0-9]+)", p.path.stem)
@@ -440,6 +439,28 @@ async def build_tree_root() -> TreeNode:
     return node
 
 
+def normalize_timestamps(directory: Path) -> None:
+    """
+    Recursively normalize all file and directory timestamps to SOURCE_DATE_EPOCH
+    for reproducible builds.
+    """
+    timestamp = int(os.environ.get("SOURCE_DATE_EPOCH", "0"))
+    
+    # Walk the directory tree in a deterministic order
+    for root, dirs, files in os.walk(directory, topdown=False):
+        # Sort to ensure deterministic order
+        dirs.sort()
+        files.sort()
+        
+        # Set timestamps for all files
+        for file in files:
+            file_path = Path(root) / file
+            os.utime(file_path, (timestamp, timestamp))
+        
+        # Set timestamp for the directory itself
+        os.utime(root, (timestamp, timestamp))
+
+
 async def main() -> None:
     parser = argparse.ArgumentParser(description="Image processing tool")
     parser.add_argument(
@@ -460,6 +481,10 @@ async def main() -> None:
 
     if len(ignored) != 0:
         print("These images were ignored due tue errors: " + ", ".join(repr(p.path.name) for p in ignored))
+    
+    # Normalize all timestamps for reproducible builds
+    print("Normalizing timestamps for reproducible builds...")
+    normalize_timestamps(POKEMON_ICONS_DIR)
 
 
 if __name__ == "__main__":
