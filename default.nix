@@ -28,7 +28,7 @@ let
 
         outputHashMode = "recursive";
         outputHashAlgo = "sha256";
-        outputHash = "sha256-P1JXJk3ImCjgYU4v+4TRF1NAYh99uxsyAoB6iODvVGE=";
+        outputHash = "sha256-VEuzi3LNXB4zq+YUEchI+4Mq/o2ap+kdNHjGamIlRqQ=";
 
         src = lib.fileset.toSource {
             root = ./.;
